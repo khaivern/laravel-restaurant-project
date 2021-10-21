@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        // 'usertype',
         'password',
     ];
 
@@ -58,4 +59,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function menus()
+    {
+        return $this->hasMany(FoodMenu::class);
+    }
 }
