@@ -13,4 +13,13 @@ class FoodMenu extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getImageAttribute($value)
+    {
+
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        return asset('storage/' . $value);
+    }
 }
