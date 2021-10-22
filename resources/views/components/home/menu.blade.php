@@ -1,4 +1,9 @@
 <section class="section" id="menu">
+    @if (session('added-to-cart-message'))
+    <div class="alert alert-success">
+        {{session('added-to-cart-message')}}
+    </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -27,6 +32,14 @@
                             </div>
                         </div>
                     </div>
+                    {!! Form::open(['method'=>'POST', 'route'=>['user.foodmenu.store', $menu]]) !!}
+                    @csrf
+                    <div class="form-group">
+                        {!! Form::label('quantity', 'Quantity') !!}
+                        {!! Form::selectRange('quantity', 1, 10) !!}
+                        {!! Form::submit('Add To Cart', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
                 @endforeach
             </div>

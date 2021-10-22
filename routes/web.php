@@ -31,11 +31,22 @@ Route::delete('/admin/{user}/userDestroy', 'AdminController@destroyUser')->name(
 
 
 Route::get('/admin/foodmenu', 'AdminController@foodMenu')->name('admin.foodmenu');
-Route::post('/admin/foodmenu', 'AdminController@foodMenuStore')->name('foodmenu.store');
+Route::post('/admin/foodmenu', 'AdminController@foodMenuStore')->name('admin.foodmenu.store');
 Route::delete('/admin/{foodmenu}/foodDestroy', 'AdminController@foodMenuDestroy')->name('admin.foodmenu.destroy');
 Route::get('/admin/{foodmenu}/edit', 'AdminController@foodMenuEdit')->name('admin.foodmenu.edit');
 Route::patch('/admin/{foodmenu}/update', 'AdminController@foodMenuUpdate')->name('admin.foodmenu.update');
 
 
+Route::get('/admin/reservations', 'AdminController@reservations')->name('admin.reservations');
 
-Route::post('/reservation/store', 'HomeController@store')->name('reservation.store');
+Route::get('/admin/chefs', 'ChefController@index')->name('admin.chefs.index');
+Route::post('/admin/chefs', 'ChefController@store')->name('admin.chef.store');
+Route::delete('/admin/chef/{chef}/destroy', 'ChefController@destroy')->name('admin.chef.destroy');
+Route::get('/admin/chef/{chef}/edit', 'ChefController@edit')->name('admin.chef.edit');
+Route::patch('/admin/chef/{chef}/update', 'ChefController@update')->name('admin.chef.update');
+
+
+Route::post('/user/reservation/store', 'HomeController@reservationStore')->name('user.reservation.store');
+Route::post('/user/foodmenu/{foodmenu}/store', 'HomeController@foodMenuStore')->name('user.foodmenu.store');
+Route::get('/user/cart/view', 'HomeController@cart')->name('user.cart.view');
+Route::delete('/user/cart/{cart}/destroy', 'HomeController@cartDestroy')->name('user.cart.destroy');

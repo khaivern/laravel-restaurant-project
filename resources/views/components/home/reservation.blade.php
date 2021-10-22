@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="contact-form">
-                    <form id="contact" action="{{route('reservation.store')}}" method="post">
+                    <form id="contact" action="{{route('user.reservation.store')}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
@@ -42,28 +42,28 @@
                                 <fieldset>
                                     <input name="name" type="text" id="name" placeholder="Your Name*" required=""
                                         value="{{ old('name') }}">
-                                    @error('name')
-                                    <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
                                 </fieldset>
+                                @error('name')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <fieldset>
                                     <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
                                         placeholder="Your Email Address" required="" value="{{ old('email') }}">
-                                    @error('email')
-                                    <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
                                 </fieldset>
+                                @error('email')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <fieldset>
                                     <input name="phone" type="text" id="phone" placeholder="Phone Number*" required=""
                                         value="{{ old('phone') }}">
-                                    @error('phone')
-                                    <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
                                 </fieldset>
+                                @error('phone')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <input type="number" name="number-of-guest" placeholder="Number of guests"
@@ -93,10 +93,10 @@
                                 <fieldset>
                                     <textarea name="message" rows="6" id="message" placeholder="Message" required=""
                                         value="{{ old('message') }}"></textarea>
-                                    @error('message')
-                                    <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
                                 </fieldset>
+                                @error('message')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>

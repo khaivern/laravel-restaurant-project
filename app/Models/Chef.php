@@ -5,23 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FoodMenu extends Model
+class Chef extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function cart()
-    {
-        return $this->hasMany(Cart::class);
-    }
 
     public function getImageAttribute($value)
     {
-
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }

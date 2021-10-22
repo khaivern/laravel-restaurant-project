@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FoodMenu;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -85,5 +86,10 @@ class AdminController extends Controller
             session()->flash('not-updated-message', 'Food Menu Unchanged');
         }
         return back();
+    }
+
+    public function reservations()
+    {
+        return view('admin.reservations.index', ['reservations' => Reservation::all()]);
     }
 }

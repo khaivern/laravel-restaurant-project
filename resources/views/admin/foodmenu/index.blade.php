@@ -22,7 +22,7 @@
 
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['method'=>'POST', 'route'=>'foodmenu.store', 'files'=>true]) !!}
+                    {!! Form::open(['method'=>'POST', 'route'=>'admin.foodmenu.store', 'files'=>true]) !!}
                     @csrf
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
