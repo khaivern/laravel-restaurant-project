@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FoodMenu;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -50,3 +51,26 @@ Route::post('/user/reservation/store', 'HomeController@reservationStore')->name(
 Route::post('/user/foodmenu/{foodmenu}/store', 'HomeController@foodMenuStore')->name('user.foodmenu.store');
 Route::get('/user/cart/view', 'HomeController@cart')->name('user.cart.view');
 Route::delete('/user/cart/{cart}/destroy', 'HomeController@cartDestroy')->name('user.cart.destroy');
+
+
+
+Route::get('/test', function () {
+    $user = User::find(1);
+    $user->menus()->save(
+        new FoodMenu([
+            'title' => 'test5'
+        ]),
+        ['quantity' => 69]
+    );
+});
+
+
+Route::get('/read', function () {
+    $user = User::find(1);
+    foreach ($user->menus as $menu) {
+        echo $menu->title;
+        echo $user->name;
+        echo $menu->pivot->quantity;
+        echo "<br>";
+    }
+});

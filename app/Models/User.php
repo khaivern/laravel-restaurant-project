@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function menus()
     {
-        return $this->hasMany(FoodMenu::class);
+        return $this->belongsToMany(FoodMenu::class)->withPivot('quantity');
     }
 
     public function carts()

@@ -16,6 +16,6 @@ class Cart extends Model
 
     public function foodmenus()
     {
-        return $this->belongsTo(FoodMenu::class);
+        return $this->belongsToMany(FoodMenu::class);
     }
 }

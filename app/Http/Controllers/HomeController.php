@@ -17,7 +17,9 @@ class HomeController extends Controller
         return view('home', [
             'menus' => FoodMenu::all(),
             'chefs' => Chef::all(),
-            'count' => (auth()->user()) ? Cart::where('user_id', auth()->user()->id)->count() : null
+            'count' => (auth()->user()) ?
+                auth()->user()->menus()->count()
+                : null
         ]);
     }
 
@@ -62,10 +64,11 @@ class HomeController extends Controller
         if (!auth()->user()) {
             return redirect()->route('login');
         } else {
-            auth()->user()->carts()->create([
-                'food_menu_id' => $foodMenu,
-                'quantity' => request('quantity')
-            ]);
+            // If same user_id and food_menu_id, then update instead of save.
+            auth()->user()->menus()->save(
+                FoodMenu::find($foodMenu),
+                ['quantity' => request('quantity')]
+            );
         }
         session()->flash('added-to-cart-message', 'Successfully added : ' . FoodMenu::find($foodMenu)->title);
         return redirect()->route('home', ['#menu']);
@@ -74,15 +77,25 @@ class HomeController extends Controller
     public function cart()
     {
         $id = auth()->user()->id;
-        $datas = Cart::where('carts.user_id', $id)->join('food_menus', 'carts.food_menu_id', '=', 'food_menus.id')->get();
 
-        return view('cart', ['count' => Cart::where('carts.user_id', $id)->count(), 'datas' => $datas]);
+        // $datas = Cart::where('carts.user_id', $id)->join('food_menus', 'carts.food_menu_id', '=', 'food_menus.id')->get();
+
+        return view('cart', ['count' => User::find($id)->menus()->count(), 'datas' => User::find($id)->menus]);
     }
 
     public function cartDestroy($data)
     {
-        Cart::where('food_menu_id', $data)->delete();
-        session()->flash('deleted-cart-success', 'Cart item deleted successfully');
+        // Cart::where('food_menu_id', $data)->delete();
+        $user = auth()->user();
+        foreach ($user->menus as $menu) {
+            if ($menu->id == $data) {
+                $menu->delete();
+            }
+        }
+
+
+
+        // session()->flash('deleted-cart-success', 'Cart item deleted successfully');
         return back();
     }
 }

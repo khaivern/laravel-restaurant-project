@@ -24,12 +24,9 @@ class FoodMenuFactory extends Factory
         return [
 
             'title' => $this->faker->text(10),
-            'user_id' => $this->faker->numberBetween(0, 10),
             'description' => $this->faker->text(),
             'image' => $this->faker->imageUrl(500, 500, 'cats'),
             'price' => $this->faker->numberBetween(30, 200),
-
-
         ];
     }
 }

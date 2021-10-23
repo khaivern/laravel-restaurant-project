@@ -42,7 +42,7 @@ class AdminController extends Controller
             $inputs['image'] = request('image')->store('images');
         }
 
-        auth()->user()->menus()->create($inputs);
+        FoodMenu::created($inputs);
         session()->flash('success-message', 'Menu : ' . request('title') . ' has been added');
         return back();
     }
