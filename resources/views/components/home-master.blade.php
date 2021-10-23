@@ -53,7 +53,7 @@ https://templatemo.com/tm-558-klassy-cafe
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
+                        <a href="{{route('home')}}" class="logo">
                             <img src="{{asset('assets/images/klassy-logo.png')}}" align="klassy cafe html template">
                         </a>
                         <!-- ***** Logo End ***** -->

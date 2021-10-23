@@ -9,14 +9,14 @@ class FoodMenu extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function cart()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsToMany(Cart::class);
     }
 
     public function getImageAttribute($value)

@@ -45,7 +45,7 @@
                                                     <td>{{$data->title}}</td>
                                                     <td>{{$data->price}}</td>
                                                     <td><img style="height: 100px" src="{{$data->image}}" alt=""></td>
-                                                    <td>{{$data->quantity}}</td>
+                                                    <td>{{$data->pivot->quantity}}</td>
                                                     <td>
                                                         {!! Form::open(['method'=>'POST',
                                                         'route'=>['user.cart.destroy',

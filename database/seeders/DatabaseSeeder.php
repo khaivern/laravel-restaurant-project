@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        // DB::table('food_menus')->truncate();
+        DB::table('food_menus')->truncate();
         // \App\Models\User::factory(10)->create();
-        // User::factory(10)->create();
-        // FoodMenu::factory(20)->create();
+        User::factory(10)->create();
+        FoodMenu::factory(20)->create();
         Chef::factory(5)->create();
     }
 }
