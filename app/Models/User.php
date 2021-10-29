@@ -70,4 +70,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
+
+    public function userIsAdmin()
+    {
+        if ($this->usertype === "1") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
